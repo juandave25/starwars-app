@@ -12,16 +12,16 @@ export default function StarshipList({ onLogout }) {
   useEffect(() => {
     fetchManufacturers();
     fetchStarships();
-  }, [fetchManufacturers, fetchStarships]);
+  }, []);
 
   useEffect(() => {
     fetchStarships();
-  }, [fetchStarships, selectedManufacturer]);
+  }, [selectedManufacturer]);
 
   const fetchManufacturers = async () => {
     try {
       const response = await fetch(
-        "https://localhost:5283/api/starships/manufacturers",
+        "http://localhost:5283/api/starships/manufacturers",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -47,11 +47,12 @@ export default function StarshipList({ onLogout }) {
   const fetchStarships = async () => {
     setIsLoading(true);
     try {
+      console.log("manufacturer", selectedManufacturer);
       const url = selectedManufacturer
-        ? `https://localhost:5283/api/starships?manufacturer=${encodeURIComponent(
+        ? `http://localhost:5283/api/starships?manufacturer=${encodeURIComponent(
             selectedManufacturer
           )}`
-        : "https://localhost:5283/api/starships";
+        : "http://localhost:5283/api/starships";
 
       const response = await fetch(url, {
         headers: {
