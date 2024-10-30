@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import LoginForm from './components/LoginForm';
-import StarshipList from './components/StarshipList';
+import React, { useState } from "react";
+import LoginForm from "./components/LoginForm";
+import StarshipList from "./components/StarhipList";
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
 
   const handleLogin = (token) => {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setIsAuthenticated(false);
   };
 
